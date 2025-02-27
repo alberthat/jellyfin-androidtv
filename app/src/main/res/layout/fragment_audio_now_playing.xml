@@ -197,6 +197,13 @@
                         android:src="@drawable/ic_album" />
 
                     <ImageButton
+                        android:id="@+id/lyricsBtn"
+                        style="@style/Button.Icon"
+                        android:layout_width="28sp"
+                        android:layout_height="28sp"
+                        android:src="@drawable/ic_lyrics" />
+
+                    <ImageButton
                         android:id="@+id/artistBtn"
                         style="@style/Button.Icon"
                         android:layout_width="28sp"
