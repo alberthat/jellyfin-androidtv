@@ -20,6 +20,7 @@ import org.jellyfin.androidtv.ui.playback.MediaManager
 import org.jellyfin.androidtv.ui.playback.PlaybackController
 import org.jellyfin.androidtv.ui.presentation.CardPresenter
 import org.jellyfin.playback.core.PlaybackManager
+import org.jellyfin.playback.core.model.LyricsState
 import org.jellyfin.playback.core.model.PlayState
 import org.jellyfin.playback.core.model.PlaybackOrder
 import org.jellyfin.playback.core.model.RepeatMode
@@ -268,6 +269,13 @@ class RewriteMediaManager(
 		val playState = playbackManager.state.playState.value
 		if (playState == PlayState.PAUSED || playState == PlayState.STOPPED) playbackManager.state.unpause()
 		else if (playState == PlayState.PLAYING) playbackManager.state.pause()
+	}
+
+	override val lyricsState: LyricsState
+		get() = playbackManager.state.lyricsState.value
+
+	override fun cycleLyricsState() {
+		playbackManager.state.cycleLyricsState()
 	}
 
 	/**

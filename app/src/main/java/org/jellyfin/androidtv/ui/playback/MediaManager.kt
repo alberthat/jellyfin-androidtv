@@ -2,6 +2,7 @@ package org.jellyfin.androidtv.ui.playback
 
 import android.content.Context
 import org.jellyfin.androidtv.ui.itemhandling.ItemRowAdapter
+import org.jellyfin.playback.core.model.LyricsState
 import org.jellyfin.sdk.model.api.BaseItemDto
 
 interface MediaManager {
@@ -34,4 +35,6 @@ interface MediaManager {
 	fun prevAudioItem(): Int
 	fun stopAudio(releasePlayer: Boolean)
 	fun togglePlayPause()
+	val lyricsState: LyricsState
+	fun cycleLyricsState()
 }
