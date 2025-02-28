@@ -181,6 +181,7 @@ public class AudioNowPlayingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 mediaManager.getValue().cycleLyricsState();
+                moveLyricsView();
                 updateButtons();
             }
         });
@@ -217,6 +218,44 @@ public class AudioNowPlayingFragment extends Fragment {
 
 
         return binding.getRoot();
+    }
+
+    private void moveLyricsView() {
+        FrameLayout lyricsScrollingContainer = requireView().findViewById(R.id.lyricsScrollingContainer);
+        FrameLayout lyricsCaptionsView = requireView().findViewById(R.id.lyricsCaptionsContainer);
+        ComposeView lyricsView = requireView().findViewById(R.id.lyrics);
+
+        LyricsState lyricsState = mediaManager.getValue().getLyricsState();
+
+        // identify new parent
+        ViewGroup newParent = null;
+        switch (lyricsState) {
+            case OFF:
+            case SCROLLING:
+                newParent = lyricsScrollingContainer;
+                break;
+            case CAPTIONS:
+                newParent = lyricsCaptionsView;
+                break;
+        }
+
+        // Get current parent
+        ViewGroup currentParent = (ViewGroup) lyricsView.getParent();
+
+        // Move if parent has changed
+        if(newParent != currentParent) {
+
+            // Remove lyricsView from its current parent
+            if (currentParent != null) {
+                currentParent.removeView(lyricsView);
+            }
+
+            // Move lyricsView to its new parent
+            if (newParent != null) {
+                newParent.addView(lyricsView);
+            }
+        }
+
     }
 
     @Override
