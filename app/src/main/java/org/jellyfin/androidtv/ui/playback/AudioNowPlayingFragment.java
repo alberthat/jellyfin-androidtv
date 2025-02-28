@@ -43,7 +43,7 @@ import org.jellyfin.androidtv.util.KeyProcessor;
 import org.jellyfin.androidtv.util.TimeUtils;
 import org.jellyfin.androidtv.util.Utils;
 import org.jellyfin.playback.core.PlaybackManager;
-import org.jellyfin.playback.core.model.LyricsState;
+import org.jellyfin.playback.core.model.LyricsMode;
 
 import java.util.List;
 
@@ -325,7 +325,7 @@ public class AudioNowPlayingFragment extends Fragment {
     private void updateButtons() {
         Timber.d("Updating buttons");
         boolean playing = mediaManager.getValue().isPlayingAudio();
-        LyricsState lyricsState = mediaManager.getValue().getLyricsState();
+        LyricsMode lyricsMode = mediaManager.getValue().getLyricsMode();
         requireActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -348,7 +348,7 @@ public class AudioNowPlayingFragment extends Fragment {
                     mArtistButton.setEnabled(mBaseItem.getAlbumArtists() != null && !mBaseItem.getAlbumArtists().isEmpty());
                 }
 
-                switch(lyricsState) {
+                switch(lyricsMode) {
                     case OFF:
                         mLyricsButton.setImageResource(R.drawable.ic_lyrics);
                         mLyricsButton.setContentDescription(getString(R.string.lbl_lyrics));

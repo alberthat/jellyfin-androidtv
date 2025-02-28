@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import org.jellyfin.playback.core.backend.BackendService
 import org.jellyfin.playback.core.backend.PlayerBackendEventListener
 import org.jellyfin.playback.core.mediastream.PlayableMediaStream
-import org.jellyfin.playback.core.model.LyricsState
+import org.jellyfin.playback.core.model.LyricsMode
 import org.jellyfin.playback.core.model.PlayState
 import org.jellyfin.playback.core.model.PlaybackOrder
 import org.jellyfin.playback.core.model.PositionInfo
@@ -22,7 +22,7 @@ interface PlayerState {
 	val videoSize: StateFlow<VideoSize>
 	val playbackOrder: StateFlow<PlaybackOrder>
 	val repeatMode: StateFlow<RepeatMode>
-	val lyricsState: StateFlow<LyricsState>
+	val lyricsMode: StateFlow<LyricsMode>
 
 	/**
 	 * The position information for the currently playing item or [PositionInfo.EMPTY]. This
@@ -81,8 +81,8 @@ class MutablePlayerState(
 	private val _repeatMode = MutableStateFlow(RepeatMode.NONE)
 	override val repeatMode: StateFlow<RepeatMode> get() = _repeatMode.asStateFlow()
 
-	private val _lyricsState = MutableStateFlow(LyricsState.OFF)
-	override val lyricsState: StateFlow<LyricsState> get() = _lyricsState.asStateFlow()
+	private val _lyricsMode = MutableStateFlow(LyricsMode.OFF)
+	override val lyricsMode: StateFlow<LyricsMode> get() = _lyricsMode.asStateFlow()
 
 	override val positionInfo: PositionInfo
 		get() = backendService.backend?.getPositionInfo() ?: PositionInfo.EMPTY
@@ -145,10 +145,10 @@ class MutablePlayerState(
 	}
 
 	override fun cycleLyricsState() {
-		_lyricsState.value = when (_lyricsState.value) {
-			LyricsState.OFF -> LyricsState.SCROLLING
-			LyricsState.SCROLLING -> LyricsState.CAPTIONS
-			LyricsState.CAPTIONS -> LyricsState.OFF
+		_lyricsMode.value = when (_lyricsMode.value) {
+			LyricsMode.OFF -> LyricsMode.SCROLLING
+			LyricsMode.SCROLLING -> LyricsMode.CAPTIONS
+			LyricsMode.CAPTIONS -> LyricsMode.OFF
 		}
 	}
 
