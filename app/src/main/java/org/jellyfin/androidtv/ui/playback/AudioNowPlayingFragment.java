@@ -347,18 +347,19 @@ public class AudioNowPlayingFragment extends Fragment {
                     mAlbumButton.setEnabled(mBaseItem.getAlbumId() != null);
                     mArtistButton.setEnabled(mBaseItem.getAlbumArtists() != null && !mBaseItem.getAlbumArtists().isEmpty());
                 }
+
                 switch(lyricsState) {
                     case OFF:
                         mLyricsButton.setImageResource(R.drawable.ic_lyrics);
-                        mLyricsButton.setContentDescription("Show lyrics");
+                        mLyricsButton.setContentDescription(getString(R.string.lbl_lyrics));
                         break;
                     case SCROLLING:
-                        mLyricsButton.setImageResource(R.drawable.ic_closed_caption);
-                        mLyricsButton.setContentDescription("Show captions");
+                        mLyricsButton.setImageResource(R.drawable.ic_closed_caption_off);
+                        mLyricsButton.setContentDescription(getString(R.string.lbl_show_captions));
                         break;
                     case CAPTIONS:
-                        mLyricsButton.setImageResource(R.drawable.ic_closed_caption_off);
-                        mLyricsButton.setContentDescription("Hide captions");
+                        mLyricsButton.setImageResource(R.drawable.ic_closed_caption);
+                        mLyricsButton.setContentDescription(getString(R.string.lbl_hide_captions));
                         break;
                 }
             }

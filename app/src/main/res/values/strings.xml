@@ -527,6 +527,8 @@
     <string name="skip_forward_length">Skip forward length</string>
     <string name="preference_enable_trickplay">Enable trickplay in video player</string>
     <string name="lbl_lyrics">Show lyrics</string>
+    <string name="lbl_show_captions">Show captions</string>
+    <string name="lbl_hide_captions">Hide captions</string>
     <plurals name="seconds">
         <item quantity="one">%1$s second</item>
         <item quantity="other">%1$s seconds</item>
