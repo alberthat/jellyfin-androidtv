@@ -262,4 +262,13 @@
         </RelativeLayout>
 
     </ScrollView>
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/captions"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:descendantFocusability="afterDescendants"
+        android:focusable="false" />
+
 </RelativeLayout>
