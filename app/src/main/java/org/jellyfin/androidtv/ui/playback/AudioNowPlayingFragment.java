@@ -180,7 +180,7 @@ public class AudioNowPlayingFragment extends Fragment {
         mLyricsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaManager.getValue().cycleLyricsState();
+                playbackManager.getValue().getState().cycleLyricsState();
                 updateButtons();
             }
         });
@@ -325,7 +325,7 @@ public class AudioNowPlayingFragment extends Fragment {
     private void updateButtons() {
         Timber.d("Updating buttons");
         boolean playing = mediaManager.getValue().isPlayingAudio();
-        LyricsMode lyricsMode = mediaManager.getValue().getLyricsMode();
+        LyricsMode lyricsMode = playbackManager.getValue().getState().getLyricsMode().getValue();
         requireActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
