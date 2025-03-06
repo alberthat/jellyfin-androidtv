@@ -190,18 +190,18 @@
                         android:src="@drawable/ic_shuffle" />
 
                     <ImageButton
-                        android:id="@+id/albumBtn"
-                        style="@style/Button.Icon"
-                        android:layout_width="28sp"
-                        android:layout_height="28sp"
-                        android:src="@drawable/ic_album" />
-
-                    <ImageButton
                         android:id="@+id/lyricsBtn"
                         style="@style/Button.Icon"
                         android:layout_width="28sp"
                         android:layout_height="28sp"
                         android:src="@drawable/ic_lyrics" />
+
+                    <ImageButton
+                        android:id="@+id/albumBtn"
+                        style="@style/Button.Icon"
+                        android:layout_width="28sp"
+                        android:layout_height="28sp"
+                        android:src="@drawable/ic_album" />
 
                     <ImageButton
                         android:id="@+id/artistBtn"
@@ -246,6 +246,14 @@
                 android:layout_alignParentBottom="false"
                 android:layout_marginTop="30dp" />
 
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/captions"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/detailArea"
+                android:descendantFocusability="afterDescendants"
+                android:focusable="false" />
+
             <TextView
                 android:id="@+id/counter"
                 android:layout_width="wrap_content"
@@ -262,13 +270,4 @@
         </RelativeLayout>
 
     </ScrollView>
-
-    <androidx.compose.ui.platform.ComposeView
-        android:id="@+id/captions"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:descendantFocusability="afterDescendants"
-        android:focusable="false" />
-
 </RelativeLayout>
