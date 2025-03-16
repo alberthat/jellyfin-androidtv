@@ -47,7 +47,7 @@ interface PlayerState {
 	fun rewind(amount: Duration? = null)
 
 	// Lyrics management
-	fun cycleLyricsMode()
+	fun toggleCaptions()
 
 
 	// Playback properties
@@ -144,9 +144,9 @@ class MutablePlayerState(
 		seekRelative(-(amount ?: options.defaultRewindAmount()))
 	}
 
-	override fun cycleLyricsMode() {
+	override fun toggleCaptions() {
 		_lyricsMode.value = when (_lyricsMode.value) {
-			LyricsMode.OFF -> LyricsMode.SCROLLING
+			LyricsMode.OFF -> LyricsMode.CAPTIONS
 			LyricsMode.SCROLLING -> LyricsMode.CAPTIONS
 			LyricsMode.CAPTIONS -> LyricsMode.OFF
 		}

@@ -111,7 +111,6 @@ public class AudioNowPlayingFragment extends Fragment {
         mCurrentNdx = binding.track;
         mScrollView = binding.mainScroller;
         mCounter = binding.counter;
-        AudioNowPlayingFragmentHelperKt.initializeLyricsView(binding.poster, binding.lyrics, playbackManager.getValue());
         AudioNowPlayingFragmentHelperKt.initializeCaptionsView(binding.captions, playbackManager.getValue());
 
         mPlayPauseButton = binding.playPauseBtn;
@@ -181,7 +180,7 @@ public class AudioNowPlayingFragment extends Fragment {
         mLyricsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playbackManager.getValue().getState().cycleLyricsMode();
+                playbackManager.getValue().getState().toggleCaptions();
                 updateButtons();
             }
         });
@@ -351,9 +350,6 @@ public class AudioNowPlayingFragment extends Fragment {
 
                 switch(lyricsMode) {
                     case OFF:
-                        mLyricsButton.setImageResource(R.drawable.ic_lyrics);
-                        mLyricsButton.setContentDescription(getString(R.string.lbl_lyrics));
-                        break;
                     case SCROLLING:
                         mLyricsButton.setImageResource(R.drawable.ic_closed_caption_off);
                         mLyricsButton.setContentDescription(getString(R.string.lbl_show_captions));
